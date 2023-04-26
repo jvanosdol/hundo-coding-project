@@ -65,17 +65,101 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //Call HelloWorld Funtion
-                        function helloWorld(){
-                            alert("Hello World");
-                        }
+                        
+// get the values from the page
+function getValues(){
+
+    // get values from page
+    let startValue = document.getElementById('startValue').value
+    let endValue = document.getElementById('endValue').value
+
+
+    console.log(startValue, endValue)
+
+
+    // parse to Int
+    startValue = parseInt(startValue)
+    endValue = parseInt(endValue)
+
+    if (Number.isInteger(startValue) && Number.isInteger(endValue)){
+        let numbers = generateNumbers(startValue, endValue)
+        displayNumbers(numbers)
+
+    } else {
+        alert('you must enter integers')
+    }
+
+}
+
+// generate numbers from startValue to endValue
+function generateNumbers(startValue, endValue){
+
+    let numbers = []
+
+    for( i = startValue; i <= endValue; i++ ){
+        numbers.push(i)
+    }
+
+    return numbers
+}
+
+// display the numbers and mark even numbers bold
+function displayNumbers(numbers){
+    
+    let templateRow = ""
+
+    for( i = 0; i <numbers.length; i++ ){
+
+        let number = numbers[i]
+        let className = 'even'
+
+        if( number % 2 === 0 ){
+            className = 'even'
+        } else {
+            className = 'odd'
+        }
+
+        templateRow += `<tr><td class="${className}">${number}</td></tr>`
+    }
+
+    document.getElementById('results').innerHTML = templateRow
+
+}
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <h5>Hundo Coding Project</h5>
+                    <p>This code defines three functions in JavaScript:
+                        <br>
+                        <br>
+                        getValues()
+                        <br>
+                        generateNumbers(startValue, endValue)
+                        <br>
+                        and displayNumbers(numbers)
+                        <br>
+                        <br>
+                        Here is what each function does:
+                            <p>
+                            getValues() function:
+                            <br>
+                            <br>
+                            This function gets the values from two input fields in a web page with id attributes of startValue and endValue. It then parses the values to integers and checks if both values are integers using the Number.isInteger() method. If both values are integers, it calls the generateNumbers(startValue, endValue) function with the two integer values, and then calls the displayNumbers(numbers) function with the resulting array of numbers. If one or both values are not integers, it displays an alert to the user to enter integers.
+                            <br>
+                            <br>
+                            generateNumbers(startValue, endValue) function:
+                            <br>
+                            <br>
+                            This function generates an array of integers from startValue to endValue inclusive, and returns the array.
+                            <br>
+                            <br>
+                            displayNumbers(numbers) function:
+                            <br>
+                            <br>
+                            This function takes an array of integers as input, and generates a table row for each integer. Each table cell is assigned a class of even or odd, depending on whether the integer is even or odd. The resulting HTML string is assigned to the innerHTML property of an element with an id attribute of results. This displays the generated table of numbers in the web page.
+                            </p>
+                    </p>
                 </div>
             </div>
         </div>
